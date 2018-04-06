@@ -1,0 +1,2 @@
+freopen("A-large.in","r",stdin);
+    freopen("out.o","w",stdout);

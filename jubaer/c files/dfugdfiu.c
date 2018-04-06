@@ -1,0 +1,46 @@
+#include <stdio.h>
+int main()
+{
+long long ara[100000],i,j,k,l,m,n,q,r,ck;
+ara[1]=1;
+ara[2]=2;
+ara[3]=6;
+ara[4]=24;
+ara[5]=12;
+ara[6]=72;
+ara[7]=4;
+ara[8]=32;
+ara[9]=88;
+ara[10]=88;
+k=1;
+for(i=11;i<=10000;i++){
+        if(i%10==5||i%10==0){
+            m=k*i;
+        }
+        else{
+    m=i*ara[i-1];
+        }
+   k=m;
+   r=0;
+   j=0;
+   ck=0;
+   l=1;
+   while(m!=0){
+    q=m%10;
+    if(q!=0)ck=1;
+    if(ck==1){
+        r=r+(l*q);
+        l=l*10;
+        j++;
+        if(j==14){
+            ara[i]=r;
+            break;
+        }
+    }
+    m=m/10;
+   }
+   if(j<2)ara[i]=q;
+}
+while(scanf("%lld",&n))
+printf("%lld\n",ara[n]);
+}

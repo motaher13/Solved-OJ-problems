@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <ctype.h>
+int main()
+{
+    char str[89],*p;
+    printf("enter a string");
+    gets(str);
+    p=str;
+    while(*p){
+    *p++=toupper(*p);
+
+    }
+    printf("%s\n",str);
+    while(*p){
+    *p++=tolower(*p);
+
+    }
+    printf("%s",str);
+
+
+
+
+
+return 0;
+}

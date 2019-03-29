@@ -1,92 +1,79 @@
 #include<bits/stdc++.h>
 using namespace std;
+
 struct node
 {
     int data;
     struct node *next;
+
 }*start=NULL;
 
 void print()
 {
-    struct node *n,*temp;
+    struct node *n;
     n=start;
     while(n!=NULL)
     {
         printf("%d\t",n->data);
         n=n->next;
+
     }
-    printf("\n");
 }
-void append(int i)
+void append(int a)
 {
+
     struct node *n,*temp;
-    n=(struct node*)malloc(sizeof(struct node));
-    n->data=i;
-    n->next=NULL;
+
     temp=start;
     while(temp->next!=NULL)
     {
         temp=temp->next;
     }
+    n=(struct node*)malloc(sizeof(struct node ));
+    n->data=a;
+    n->next=NULL;
     temp->next=n;
 }
-void append_first(int i)
+void append_first(int a)
 {
+
     struct node *n,*temp;
-    n=(struct node*)malloc(sizeof(struct node));
-    n->data=i;
+
+    n=(struct node*)malloc(sizeof(struct node ));
+
+    n->data=a;
     n->next=start;
     start=n;
+
 }
-
-
-void append_after(int j,int i)
+void del(int a)
 {
     struct node *n,*temp;
-    n=(struct node*)malloc(sizeof(struct node));
-    n->data=i;
-    n->next=NULL;
     temp=start;
-    while(temp->data!=j)
+    while(temp->data!=a)
     {
+        n=temp;
         temp=temp->next;
+
     }
     n->next=temp->next;
-    temp->next=n;
-}
-void dlt(int j)
-{
-    struct node *m,*n,*temp;
-    n=start;
-    if(start->data==j)
-        start=start->next;
-    else
-    {
-        while(temp->data!=j)
-        {
-            m=temp;
-            temp=n;
-            n=n->next;
-        }
-        m->next=n;
-    }
 
 }
 
 int main()
 {
-    int i,j,k,l;
-    struct node *new_node,*current;
-    for(i=0;i<5;i++)
+    int b,m;
+    for(int i=0; i<5; i++)
     {
+        struct node *new_node, *current;
         new_node=(struct node*)malloc(sizeof(struct node));
         scanf("%d",&new_node->data);
-        new_node->next=NULL;
+        new_node ->next=NULL;
+
         if(start==NULL)
         {
             start=new_node;
             current=new_node;
-
         }
         else
         {
@@ -95,18 +82,30 @@ int main()
         }
     }
     print();
+    printf("\n");
+    while(scanf("%d",&b)==1)
+    {
+        if(b==0)
+            return 0;
+        else if(b==1)
+        {
+            scanf("%d",&m);
+            append(m);
+        }
+        else if(b==2)
+        {
+            scanf("%d",&m);
+            append_first(m);
+        }
+        else if(b==3)
+        {
+            scanf("%d",&m);
+            del(m);
+        }
 
-    scanf("%d",&i);
-    append(i);
-    print();
-    append_first(i);
-    print();
-    scanf("%d",&j);
-    append_after(j,i);
-    print();
-    scanf("%d",&j);
-    dlt(j);
-    print();
-    //dlt afrer,dlt before;
+        print();
+        printf("\n");
+    }
 
+    return 0;
 }

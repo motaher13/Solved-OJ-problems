@@ -1,0 +1,5 @@
+1. Quick Sort ->Algos
+
+2. kth largest using median-> using quicksort partitioning ->
+
+3. max heap, min heap ->

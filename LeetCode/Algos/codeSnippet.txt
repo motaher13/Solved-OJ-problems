@@ -1,0 +1,18 @@
+
+1. comparator for priority queue
+PriorityQueue<ListNode> pq=new PriorityQueue<>((x,y)->Integer.compare(x.val,y.val));
+
+2. comparator for array
+int[] nums=Arrays.stream(nums).boxed()
+                .sorted((a,b)-> (""+b+a).compareTo(""+a+b))
+                .mapToInt(i -> i).toArray();
+
+3. concat integer array
+Arrays.stream(nums).mapToObj(String::valueOf).reduce((a,b)->a.concat(b)).get();
+
+2. make the right 1 to 0
+   idx= idx - (idx & -idx)
+   // https://youtu.be/aAALKHLeexw?t=1585
+
+3. trie tree -> Backtracking/WordSearchII
+

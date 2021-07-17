@@ -4,26 +4,6 @@ import java.util.Arrays;
 
 public class CoinChange {
 
-    // top down
-    // go down from amount to each value possible
-    public int coinChange(int[] coins, int amount) {
-        if(amount<1) return 0;
-        return findCoinChange(coins,amount,new int[amount+1]);  // n+1 length to get nth index;
-    }
-
-    public int findCoinChange(int[]coins, int rest, int[] count){
-        if(rest<0) return -1;
-        if(rest==0) return 0;
-        if(count[rest]!=0) return count[rest];
-        int min=Integer.MAX_VALUE;
-        for(int coin:coins){
-            int n=findCoinChange(coins,rest-coin,count);
-            if(n>=0 && n<=min) min=n+1;
-        }
-        count[rest]= (min==Integer.MAX_VALUE)? -1:min;
-        return count[rest];
-    }
-
 
     // bottom up
     public int bottomUp(int[] coins, int amount) {

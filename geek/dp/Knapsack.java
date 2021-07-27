@@ -2,6 +2,7 @@ class Knapsack
 { 
     // Bottom-up
     // Time O(n*w) space O(n)
+    // explain https://youtu.be/9aWwoFQp-OQ
 
     static int knapSack(int weight, int wt[], int val[], int n){
         int[] dp=new int[weight+1];

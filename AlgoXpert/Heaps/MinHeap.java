@@ -11,6 +11,13 @@ public class MinHeap {
     }
 
     public List<Integer> buildHeap(List<Integer> array) {
+        // although it looks liken O(nlogn), it's actually O(n)
+        // https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
+        
+        // first, take the parent of the last element, build the heap for it
+        // then the element before that, that will go up the tree in circular
+        // way, and the bottom element will reach top if it's minimum. 
+        // just do a simulation
         int firstParentIdx=(array.size()-2)/2;
         for(int cur=firstParentIdx;cur>=0;cur--)
             siftDown(cur, array.size()-1, array);
@@ -18,6 +25,7 @@ public class MinHeap {
     }
 
     public void siftDown(int currentIdx, int endIdx, List<Integer> heap) {
+        // O(logn)
         int childOneIdx=currentIdx*2+1;
 
         while(childOneIdx<=endIdx){

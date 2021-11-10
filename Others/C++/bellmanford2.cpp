@@ -6,7 +6,8 @@ struct Edge
     int source, dest, weight;
 };
 
-
+/* bellman ford could detect negative cycle.remember that negative 
+edge doesn't mean negative cycle, this is directed grapth*/
 
 void bellmanford(vector<Edge> const&edges,int source,int n)
 {
@@ -14,7 +15,11 @@ void bellmanford(vector<Edge> const&edges,int source,int n)
     vector<int>distance(n,INT_MAX);
     distance[source]=0;
 
-    for(int i=0; i<n; i++)
+    /* the iteration will be nodeCount-1 times, cause, to reach from 
+    *  0 to 5, we need 4 steps, meaning nodeCount-1 steps will take us
+    *  to the last node
+    */
+    for(int i=0; i<n-1; i++)
     {
         for(int j=0; j<edges.size(); j++)
         {

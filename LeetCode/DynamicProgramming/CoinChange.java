@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class CoinChange {
 
-
+    /***** minimum number of coin to make the amount *****/
     // bottom up
     public int bottomUp(int[] coins, int amount) {
         int[] dp=new int[amount+1];

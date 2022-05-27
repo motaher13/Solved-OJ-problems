@@ -24,6 +24,20 @@ public class IntersectionofTwoLinkedLists {
         }
     }
 
+    public ListNode best(ListNode headA, ListNode headB) {
+        ListNode pa=headA;
+        ListNode pb=headB;
+
+        // this will work because after some loop both pa and pb
+        // will be null at the same time
+        while(pa!=pb){
+            pa = pa==null? headB:pa.next;
+            pb = pb==null? headA:pb.next;
+        }
+        return pa;
+        
+    }
+
     public static void main(String[] args) {
         ListNode a=new ListNode(1);
         ListNode b=new ListNode(2);

@@ -54,6 +54,30 @@ public class BinaryTreeZigzagLevelOrderTraversal {
 
     }
 
+    //EASIER
+    public List<List<Integer>> zigzagLevelOrderDFS(TreeNode root) {
+        List<List<Integer>> out=new ArrayList<>();
+        dfs(out, root, 0);
+        return out;
+    }
+    
+    private void dfs(List<List<Integer>> out, TreeNode node, int level){
+        if(node==null) return;
+        if(level>=out.size()){
+            List<Integer> list=new LinkedList<>();
+            list.add(node.val);
+            out.add(list);
+        }else{
+            if(level%2==0)
+                out.get(level).add(node.val);
+            else
+                out.get(level).add(0,node.val);
+        }
+        dfs(out, node.left, level+1);
+        dfs(out, node.right, level+1);
+        
+    }
+
     public static void main(String[] args) {
         TreeNode a=new TreeNode(1);
         TreeNode b=new TreeNode(2);

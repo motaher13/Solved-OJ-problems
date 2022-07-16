@@ -42,19 +42,20 @@ public class RotateArray {
 
     public void best(int[] nums, int k){
         // just use a count
-        k = k % nums.length;
-        int count = 0;
-        for (int start = 0; count < nums.length; start++) {
-            int current = start;
-            int prev = nums[start];
-            do {
-                int next = (current + k) % nums.length;
-                int temp = nums[next];
-                nums[next] = prev;
-                prev = temp;
-                current = next;
+        int count=0;
+        int l=nums.length;
+        k%=l;
+        for(int start=0;count<l;start++){
+            int current=start;
+            int prevVal=nums[current];
+            do{
+                int next=(current+k)%l;
+                int tempVal=nums[next];
+                nums[next]=prevVal;
+                prevVal=tempVal;
+                current=next;
                 count++;
-            } while (start != current);
+            }while(current!=start);
         }
     }
 

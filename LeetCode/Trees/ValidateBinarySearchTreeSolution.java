@@ -1,6 +1,7 @@
 package LeetCode.Trees;
 
 public class ValidateBinarySearchTreeSolution {
+    //handle edge case with minus 1
     public boolean isValidBST(TreeNode root) {
         return checkBST(root,-2147483648L,2147483647L);
     }
@@ -9,6 +10,19 @@ public class ValidateBinarySearchTreeSolution {
     public boolean checkBST(TreeNode node,long min,long max){
         if(node==null) return true;
         return node.val>=min && node.val<=max && checkBST(node.left,min,(long)node.val-1) && checkBST(node.right,(long)node.val+1,max);
+    }
+
+    // handle edge case with null
+    public boolean isValidBST(TreeNode root) {
+        return check(root, null, null);
+    }
+    
+    private boolean check(TreeNode root, Integer min, Integer max){
+        
+        if(root==null) return true;
+        if((min==null || root.val>min) && (max==null || root.val<max))
+            return (check(root.left, min, root.val) && check(root.right, root.val, max));
+        return false;
     }
 
 

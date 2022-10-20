@@ -48,7 +48,7 @@ public class LongestCommonPrefix {
             else
                 high = middle - 1;
         }
-        return strs[0].substring(0, (low + high) / 2);
+        return strs[0].substring(0, Math.min(low, high)); // every time, high will be smaller then lower in the end, using just 'high' instead of min is also accepted
     }
 
     private boolean isCommonPrefix(String[] strs, int len){

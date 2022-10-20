@@ -9,22 +9,21 @@ import java.util.List;
 public class PascalTriangle {
 
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> k = new ArrayList<>();
-        if (numRows == 0) return k;
-        List<Integer> first = new ArrayList<>(Arrays.asList(1));
-        k.add(first);
-        if (numRows == 1) return k;
-
-        for (int i = 1; i < numRows; i++) {
-            List<Integer> f = k.get(i - 1);
-            List<Integer> g = new ArrayList<>();
-            g.add(1);
-            for (int j = 1; j < i; j++)
-                g.add(f.get(j - 1) + f.get(j));
-            g.add(1);
-            k.add(g);
+        List<List<Integer>> out = new ArrayList<>();
+        if(numRows==0) return out;
+        out.add(Arrays.asList(1));
+        for(int i=1;i<numRows;i++){
+            List<Integer> list=new ArrayList<>();
+            for(int j=0;j<=i;j++){
+                int left=j-1, right=j, num=0;
+                num+= left<0? 0:out.get(i-1).get(left);
+                num+= right==i? 0:out.get(i-1).get(right);
+                list.add(num);
+            }
+            out.add(list);
         }
-        return k;
+        
+        return out;
     }
 
     public static void main(String[] args) {

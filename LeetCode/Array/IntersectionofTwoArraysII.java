@@ -5,24 +5,23 @@ import java.util.*;
 public class IntersectionofTwoArraysII {
 
     public int[] intersect(int[] nums1, int[] nums2) {
-        List<Integer> out=new ArrayList<>();
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int i:nums1){
+        if(nums2.length>nums1.length)
+            return intersect(nums2,nums1);
+        
+        Map<Integer,Integer> map=new HashMap<>();
+        for(int i:nums1)
             map.put(i,map.getOrDefault(i,0)+1);
-        }
-
+        
+        int k=0;
         for(int i:nums2){
             if(map.get(i)!=null && map.get(i)>0){
+                nums1[k++]=i;
                 map.put(i,map.get(i)-1);
-                out.add(i);
             }
+            
         }
-
-        int[] ret = new int[out.size()];
-        for (int i=0; i < ret.length; i++)
-            ret[i] = out.get(i);
-
-        return ret;
+        
+        return Arrays.copyOfRange(nums1,0,k);
     }
 
     public static void main(String[] args){

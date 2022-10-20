@@ -11,6 +11,16 @@ public class Numberof1Bits {
         return count;
     }
 
+    public int anotherEasy(int n) {
+        int k=1;
+        int count=0;
+        for(int i=0;i<32;i++){
+            if((n&k)!=0)count++;
+            k=k<<1;
+        }
+        return count;
+    }
+
     public int best(int n) {
         //www.hackerearth.com/practice/basic-programming/bit-manipulation/basics-of-bit-manipulation/tutorial/
         int count=0;

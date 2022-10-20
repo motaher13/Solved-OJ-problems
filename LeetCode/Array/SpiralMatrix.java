@@ -8,35 +8,38 @@ public class SpiralMatrix {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> out=new ArrayList<>();
         if(matrix.length==0) return out;
-        int xMax=matrix.length-1,xMin=0;
-        int yMax=matrix[0].length-1,yMin=0;
-        int i=0,j=0;
-        while (xMin<=xMax && yMin<=yMax){
-            if(xMin<=xMax && yMin<=yMax) {
-                for (j = yMin; j <= yMax; j++)
+        
+        int left=0, right=matrix[0].length-1;
+        int top=0, bottom=matrix.length-1;
+        int i=0, j=0;
+        
+        while(left<=right && top<=bottom){
+            
+            if(left<=right && top<=bottom){
+                for(j=left;j<=right;j++)
                     out.add(matrix[i][j]);
-                xMin++;
+                top++;
                 j--;
             }
-
-            if(xMin<=xMax && yMin<=yMax) {
-                for (i = xMin; i <= xMax; i++)
+            
+            if(left<=right && top<=bottom){
+                for(i=top;i<=bottom;i++)
                     out.add(matrix[i][j]);
-                yMax--;
+                right--;
                 i--;
             }
-
-            if(xMin<=xMax && yMin<=yMax) {
-                for (j = yMax; j >= yMin; j--)
+            
+            if(left<=right && top<=bottom){
+                for(j=right;j>=left;j--)
                     out.add(matrix[i][j]);
-                xMax--;
+                bottom--;
                 j++;
             }
-
-            if(xMin<=xMax && yMin<=yMax) {
-                for (i = xMax; i >= xMin; i--)
+            
+            if(left<=right && top<=bottom){
+                for(i=bottom;i>=top;i--)
                     out.add(matrix[i][j]);
-                yMin++;
+                left++;
                 i++;
             }
         }

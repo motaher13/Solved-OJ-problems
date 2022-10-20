@@ -2,65 +2,70 @@ package LeetCode.LinkedList;
 
 public class PalindromeLinkedList {
 
+    //by reverse
     public boolean isPalindrome(ListNode head) {
-        if(head==null|| head.next==null) return true;
-        ListNode first=head,second=head.next,middle=null,last=null;
-
-        if(second.next==null){
-            if(second.val==first.val)
-                return true;
-            else return false;
-        }
-
-        while (second.next!=null){
+        // go to middle, reverse the second half, check, reverse back
+        if(head==null || head.next==null) return true;
+        ListNode first=head, second=head.next;
+        
+        if(second.next==null) return second.val==first.val;
+        
+        while(second.next!=null){
             first=first.next;
-            if(second.next!=null) second=second.next;
+            second=second.next;
             if(second.next!=null) second=second.next;
         }
-
-        middle=first;
-        ListNode a,c=first.next;
-        while (c!=null){
-            a=first;
-            first=c;
-            c=c.next;
-            first.next=a;
+        
+        // reverse
+        // first at the middle or left-middle
+        // so reverse upto first
+        ListNode middle=first, a=first, b=first.next;
+        while(b!=null){
+            ListNode temp=b.next;
+            b.next=a;
+            a=b;
+            b=temp;
         }
-
-        last=second=first;
+        
         first=head;
-
-        boolean p=true;
-        while (true){
-            if(first==second)
-                break;
-            if(first.val==second.val) {
-                first = first.next;
-                second = second.next;
-            }else{
-                p=false;
+        ListNode last=second;
+        boolean result=true;
+        while(first!=second && second!=middle){
+            if(first.val!=second.val){
+                result=false;
                 break;
             }
-            if(first.next==second){
-                if(first.val!=second.val)
-                    p=false;
-                break;
-            }
+            first=first.next;
+            second=second.next;
         }
-
-        c=last.next;
+        
+        // reverse back
+        a=last;
+        b=last.next;
         last.next=null;
-        while (true){
-            a=last;
-            last=c;
-            c=c.next;
-            last.next=a;
-            if(last==middle)
-                break;
+        while(b!=middle){
+            ListNode temp=b.next;
+            b.next=a;
+            a=b;
+            b=temp;
         }
+        
+        return result;
+        
+    }
 
-        return p;
-
+    public boolean isPalindromeRecurssive(ListNode head) {
+        first=head;
+        return recurssive(head);
+    }
+    
+    private boolean recurssive(ListNode p){
+        if(p!=null){
+            if(!recurssive(p.next)) return false;
+            if(p.val!=first.val) return false;
+            first=first.next;
+        }
+        return true;
     }
 
     public static void main(String[] args){

@@ -1,50 +1,36 @@
 class Solution {
     public String minWindow(String s, String t) {
-        if (s.length() == 0 || t.length() == 0) {
-            return "";
-        }
+        int i=0, j=0;
+        int count=0;
+        int start=0, end=Integer.MAX_VALUE;
+
         
-        Map<Character, Integer> dictT=new HashMap<>();
-        for(char c:t.toCharArray()) dictT.put(c,dictT.getOrDefault(c,0)+1);
-        
-        Map<Character,Integer> windowCnt=new HashMap<>();
-        int[] ans={-1,0,0};
-        int left=0,right=0;
-        
-        int required=dictT.size();
-        int formed=0;
-        
-        while(right<s.length()){
-            char c=s.charAt(right);
-            windowCnt.put(c,windowCnt.getOrDefault(c,0)+1);
-            
-            if(dictT.containsKey(c) 
-               && windowCnt.get(c).intValue()==dictT.get(c).intValue())
-                formed++;
-            
-            
-            while(formed==required && left<=right){
-                c=s.charAt(left);
-                if(ans[0]==-1 || (right-left+1)<ans[0]){
-                    ans[0]=right-left+1;
-                    ans[1]=left;
-                    ans[2]=right;
-                }
-                              
-                windowCnt.put(c,windowCnt.get(c)-1);
-                
-                if(dictT.containsKey(c) && 
-                   windowCnt.get(c).intValue()<dictT.get(c).intValue())
-                    formed--;
-                
-                left++;
+        Map<Character, Integer> map=new HashMap<>();
+        for(char c:t.toCharArray()) map.put(c, map.getOrDefault(c,0)+1);
+
+        while(j<s.length()){
+            char c=s.charAt(j);
+            if(map.containsKey(c)){
+                map.put(c,map.get(c)-1);
+                if(map.get(c)==0) count++;
             }
-            
-            right++;
+
+            while(count==map.size()){
+                if((j-i)<(end-start)){
+                    end=j;
+                    start=i;
+                }
+
+                char d=s.charAt(i);
+                i++;
+                if(map.containsKey(d)){
+                    if(map.get(d)==0) count--;
+                    map.put(d,map.get(d)+1);
+                }
+            }
+            j++;
         }
-        
-        if(ans[0]>0) return s.substring(ans[1],ans[2]+1);
-        else return "";
-        
+            return end==Integer.MAX_VALUE? "":s.substring(start, end+1);
+
     }
 }

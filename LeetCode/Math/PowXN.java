@@ -11,6 +11,7 @@ public class PowXN {
     }
 
     // trick
+    // https://leetcode.com/problems/powx-n/solutions/19563/iterative-logn-solution-with-clear-explanation/
     public double best(double x,int n){
         long N=n; //as we want to handle a case for int.min, when it's rotated with -1, it wont' cross the limit and we will get the real data
         if(n<0){

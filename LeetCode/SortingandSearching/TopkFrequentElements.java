@@ -26,25 +26,21 @@ public class TopkFrequentElements {
     public int[] bestForTimeWorstForSpace(int[] nums, int k) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int word: nums) {
-            map.put(word, map.getOrDefault(word, 0)+1);
-        }
-        List<Integer>[] list= new List[nums.length+1];
+        
+        
+        List<Integer>[] countToNumList= new List[nums.length+1];
         for (int num: map.keySet()) {
-            if(list[map.get(num)] == null) {
-                list[map.get(num)] = new ArrayList<>();
+            int count=map.get(num);
+            if(countToNumList[count] == null) {
+                countToNumList[count] = new ArrayList<>();
             }
-            list[map.get(num)].add(num);
+            countToNumList[count].add(num);
         }
-        // while(k >=0) {
         int[] res = new int[k];
         k--;
         for (int i = nums.length; i >=0 && k>=0; i--) {
-            // System.out.println(list[i]);
-            if (list[i]!=null) {
-                // System.out.println(list[i]);
-                for (int num: list[i]) {
-                    // System.out.println(num);
+            if (countToNumList[i]!=null) {
+                for (int num: countToNumList[i]) {
                     res[k--] = num;
                 }
             }

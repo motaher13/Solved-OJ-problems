@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/*
+ * here we are going to use bit mask, to represent 9 digits, we will have 9 bits in each
+ * integer in the row or col or box cache. to show if a bit is present or not
+ * 
+ * to represnt 1, shift 1 to right 1 step. to represent 5, shift 1 to right 4 steps
+ * to check if a number is present, make & operator
+ * to mark a number present, use | operator
+*/
+
 public class Test {
     public static boolean isValidSudoku(char[][] board) {
         int n=9;
